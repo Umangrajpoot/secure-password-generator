@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password genrator</title>
+    <style>
+    
+        .logo{
+            width: 1.5cm;
+            margin-left: 1cm;
+            position: absolute;
+        }
+        .heading{
+          margin-left: 3.5cm;
+          font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        .horizontal{
+            width: 95%;
+            margin-top: 1cm;
+        }
+        .passlen{
+            margin-top: 3cm;
+        }
+        .margin{
+            margin-left: 2cm;
+        }
+        .genratepass{
+            margin-left: 5cm;
+        }
+        #passlenbox{
+            position: absolute;
+            top: 5.6cm;
+            width: 0.5cm;
+            margin-left: 9cm;
+            margin-top: 2%;
+        }
+        #passlenbox2{
+            position: absolute;
+            top: 5.6cm;
+            width: 0.5cm;
+            margin-left: 10cm;
+            margin-top: 0%;
+        }
+        #passlenbox3{
+            position: absolute;
+            top: 5.6cm;
+            width: 0.5cm;
+            margin-left: 11cm;
+            margin-top: 0%;
+        }
+        #symbolsbox{
+            position: absolute;
+            top: 6.5cm;
+            margin-left: 9cm;
+           
+
+        }
+        #numbox{
+            position: absolute;
+            top: 7.4cm;
+            margin-left: 9cm;
+            
+        }
+        #lowercasebox{
+            position: absolute;
+            top: 8.3cm;
+            margin-left: 9cm;
+           
+        }
+        #uppercasebox{
+            position: absolute;
+            top: 9.2cm;
+            margin-left: 9cm;
+           
+        }
+        .yourpass{
+            margin-left: 2cm;
+        }
+         #result{
+             position: absolute;
+             margin-left: 5cm;
+             margin-top: -1cm;
+         }
+    .leftop{
+        margin-left: 20%;
+        margin-top: 7%;
+        padding: 0%;
+        position: absolute;
+    }
+  .div{
+      border: 2px solid red;
+      width: 43%;
+      text-align: left;
+      background-color: rgb(245, 132, 57);
+      color: white;
+      margin-left: 30%;
+      box-shadow: black 10px 10px 20px;
+      border-radius: 10%;
+  }
+  .logo{
+      margin-top: 20px;
+  }
+  .genratepass:hover{
+      background-color: rgb(233, 54, 0);
+      color: white;
+  }
+  .passLenDiv{
+             position: absolute;
+             top: 205px;
+             left: 225px;
+             margin-left: 34%;
+         }
+         .passLenDiv input[type="radio"]{
+            opacity: 0;
+            width:0;
+        }
+        .passLenDiv label{
+            display: inline-block;
+            background-color: #ddd;
+            padding: 5px 10px;
+            font-family: sans-serif, Arial;
+            font-size: 16px;
+            border: 2px solid #444;
+            border-radius: 4px;
+        }
+        .passLenDiv label:hover{
+            background-color: cyan;
+
+        }
+        .passLenDiv input[type="radio"]:checked+label{
+            background-color: darkgreen;
+        }
+        
+
+    </style>
+</head>
+<body>
+    <div class="div">
+            <img src="key.jpg" alt="" class="logo">
+    <h1 class="heading">Secure Password Genrator</h1>
+    <hr class="horizontal">
+    <div class="passLenDiv">
+        <input type="radio" name="lengthPassword" value="8"  id="passlenbox"   ><label for="passlenbox" >8</label>
+        <input type="radio" name="lengthPassword" value="12" id="passlenbox2"  ><label for="passlenbox2">12</label>
+        <input type="radio" name="lengthPassword" value="16" id="passlenbox3"  ><label for="passlenbox3">16</label>
+    </div>
+    <p class="passlen margin">Password length:</p>
+    <p class="insymbol margin">Include Symbols:</p>
+    <p class="innumber margin">Include Number:</p>
+    <p class="lowercase margin">Include Lowercase Characters:</p>
+    <p class="uppercase margin">Include Uppercase Characters:</p>
+   <!-- <input type="checkbox" name="" id="passlenbox">-->
+   <div class="top"> 
+   <input type="checkbox" name="" id="symbolsbox">
+    <input type="checkbox" name="" id="numbox">
+    <input type="checkbox" name="" id="lowercasebox">
+    <input type="checkbox" name="" id="uppercasebox">
+</div>
+    <button onclick="randpass()" class="genratepass">Genrator Password</button>
+    <p class="yourpass">Your Password</p>
+    <input type="text" name="" id="result" disabled>
+</div>
+
+<script>
+    function generate(str,len){ //str=data , len=how many bytes to be generate
+        let generatedData=""
+        for(let i=0;i<len;i++){
+            let number = Math.floor(Math.random()*str.length);
+            generatedData += str.charAt(number);
+        }
+        return generatedData;
+    }
+  function randpass(){
+    let passwordLength=0;
+        if(document.getElementById("passlenbox").checked)
+        {
+            passwordLength = 8;
+        }
+        else if(document.getElementById("passlenbox2").checked)
+        {
+            passwordLength = 12;
+        }
+        else if(document.getElementById("passlenbox3").checked)
+        {
+            passwordLength = 16;
+        }
+    let symbol_check = document.getElementById("symbolsbox").checked;
+    let number_check = document.getElementById("numbox").checked;
+    let lower_check  = document.getElementById("lowercasebox").checked;
+    let upper_check  = document.getElementById("uppercasebox").checked;
+    let symbol = "@#$%&";
+    let number = "0123456789";
+    let lower  = "abcdefghijklmnpqrstuvwxyz";
+    let upper  = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    //let array = [lower,upper,number,symbol];
+    let string = ""
+
+    if(symbol_check==true){
+        string += symbol;
+    }
+    if(number_check == true){
+        string +=number;
+    }
+    if(lower_check==true){
+        string+=lower;
+    }
+    if(upper_check == true){
+        string += upper;
+    }
+    if(symbol_check==false&&number_check==false&&lower_check==false&&upper_check==false){
+            alert("please select type of password");
+        }
+        let password = "";
+        for(let i=1;i<=passwordLength;i++){
+            let num = Math.floor(Math.random()*string.length);
+            password += string.charAt(num);
+        }
+
+        //let lengthToGen = [3,2,2,1];
+        //console.log(array);
+       
+        //for(let i=0;i<array.length;i++){
+        //    password += generate(array[i],lengthToGen[i]);
+        //}
+        document.getElementById("result").value = password;
+      }
+  
+</script>
+</body>
+</html>
